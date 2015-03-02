@@ -1,0 +1,9 @@
+---
+varnish:
+  default_vcl: /usr/local/accelerator/varnish/default.vcl
+  vcl_dir: /usr/local/accelerator/varnish
+
+accelerator:
+  name: accelerator
+  repo:
+    url: github.com:account.accelerator.git

@@ -1,0 +1,18 @@
+---
+- name: Create app source directory
+  sudo: yes
+  file:
+    path: "{{ accelerator['install_dir'] }}/{{ accelerator['name'] }}"
+    state: directory
+    mode: 0777
+
+- name: "Add/Update app repo, using {{ app['version'] }}"
+  git:
+    repo: "{{ accelerator['repo']['url'] }}"
+    dest: "{{ accelerator['install_dir'] }}/{{ accelerator['name'] }}"
+    version: "{{ accelerator['repo']['version'] | default('master') }}"
+    update: yes
+    accept_hostkey: true
+  notify: reload varnish
+  tags:
+    - release
