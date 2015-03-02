@@ -1,4 +1,3 @@
 ---
 dependencies:
-  - { role: mauricios.Essentials, tags: ["essentials"] }
   - { role: mauricios.Varnish, tags: ["varnish"] }
