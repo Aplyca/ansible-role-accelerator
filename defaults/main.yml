@@ -6,4 +6,4 @@ varnish:
 accelerator:
   name: accelerator
   repo:
-    url: github.com:account.accelerator.git
+    url: git@github.com:Aplyca/ansible-role-accelerator.git
