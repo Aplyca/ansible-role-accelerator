@@ -1,7 +1,8 @@
 ---
 varnish:
-  default_vcl: /usr/local/accelerator/varnish/default.vcl
+  default_dir: /usr/local/accelerator/varnish
   vcl_dir: /usr/local/accelerator/varnish
+  port: 80
 
 accelerator:
   name: accelerator
