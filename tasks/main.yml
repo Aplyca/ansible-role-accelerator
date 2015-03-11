@@ -16,3 +16,4 @@
   notify: reload varnish
   tags:
     - release
+  when: accelerator['repo'] is defined

@@ -5,5 +5,3 @@ varnish:
 
 accelerator:
   name: accelerator
-  repo:
-    url: git@github.com:Aplyca/ansible-role-accelerator.git
