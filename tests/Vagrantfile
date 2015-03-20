@@ -1,5 +1,12 @@
 Vagrant.configure(2) do |config|
+  config.hostmanager.enabled = true
+  config.hostmanager.manage_host = true
+  config.hostmanager.ignore_private_ip = false
+  config.hostmanager.include_offline = true
+
   config.vm.define "accelerator.vagrant", primary: true, autostart: true do |config_machine|
+      config.vm.synced_folder "./accelerator", "/usr/local/accelerator"
+
       #Assigning a provider
       config_machine.vm.provider :virtualbox do |virtualbox, override|
           virtualbox.name = "Vagrant Accelerator"
@@ -7,7 +14,8 @@ Vagrant.configure(2) do |config|
 		  override.vm.box = "ubuntu/trusty64"
 
 		  # Configuring network
-          override.vm.network "forwarded_port", guest: 6081, host: 6081, auto_correct: true
+          override.vm.hostname = 'accelerator.vagrant'
+          override.vm.network "private_network", ip: "214.0.0.#{rand(2..250)}"
       end
 
       # Asinging a provisioner

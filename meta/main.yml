@@ -1,4 +1,5 @@
 ---
 dependencies:
   - { role: mauricios.Essentials, tags: ["essentials"] }
+  - { role: mauricios.Nginx, tags: ["nginx"], when:  accelerator.use_nginx   }
   - { role: mauricios.Varnish, tags: ["varnish"] }

@@ -17,3 +17,12 @@
   tags:
     - release
   when: accelerator['repo'] is defined
+
+- name: Disable Nginx default server
+  sudo: yes
+  command: "mv default.conf default.conf.off"
+  args:
+    chdir: "{{ nginx['server_root'] }}/conf.d"
+    creates: "default.conf.off"
+  notify: reload nginx
+  when: accelerator["use_nginx"]

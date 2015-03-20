@@ -4,5 +4,15 @@ varnish:
   vcl_dir: /usr/local/accelerator/varnish
   port: 80
 
+nginx:
+  worker_processes: 4
+  worker_connections: 19000
+  worker_rlimit_nofile: 20000
+  servers:
+    - listen: "8080 default_server"
+      server_name: "localhost"
+      include: "/usr/local/accelerator/nginx/proxy/*.conf"
+
 accelerator:
   name: accelerator
+  use_nginx: true
