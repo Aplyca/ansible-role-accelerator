@@ -1,4 +1,16 @@
 ---
+- name: Verify Accelerator repo is present
+  stat:
+    path: "{{ accelerator['install_dir'] }}/{{ accelerator['name'] }}/.git"
+  register: repo
+
+- name: Make sure the app source directory will be empty
+  sudo: yes
+  file:
+    path: "{{ accelerator['install_dir'] }}/{{ accelerator['name'] }}"
+    state: absent
+  when: accelerator['repo'] is defined and repo.stat.isdir is defined and not p.stat.isdir
+
 - name: Create app source directory
   sudo: yes
   file:
@@ -13,7 +25,9 @@
     version: "{{ accelerator['repo']['version'] | default('master') }}"
     update: yes
     accept_hostkey: true
-  notify: reload varnish
+  notify:
+    - reload varnish
+    - reload nginx
   tags:
     - release
   when: accelerator['repo'] is defined

@@ -1,4 +1,12 @@
 ---
+essentials:
+  packages:
+    - lynx
+    - bash
+    - curl
+    - git
+    - dnsmasq
+
 varnish:
   default_dir: /usr/local/accelerator/varnish
   vcl_dir: /usr/local/accelerator/varnish
@@ -8,9 +16,17 @@ nginx:
   worker_processes: 4
   worker_connections: 19000
   worker_rlimit_nofile: 20000
+  http:
+    keepalive_timeout: 65
+    server_tokens: "off"
+    tcp_nopush: "on"
+    types_hash_max_size: 2048
   servers:
     - listen: "8080 default_server"
       server_name: "localhost"
+      gzip: "on"
+      resolver: "127.0.0.1"
+      "set $backend_upstream": "http://www.ccb.org.co:80"
       include: "/usr/local/accelerator/nginx/proxy/*.conf"
 
 accelerator:
