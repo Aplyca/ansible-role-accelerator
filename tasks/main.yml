@@ -9,7 +9,7 @@
   file:
     path: "{{ accelerator['install_dir'] }}/{{ accelerator['name'] }}"
     state: absent
-  when: accelerator['repo'] is defined and repo.stat.isdir is defined and not p.stat.isdir
+  when: accelerator['repo'] is defined and not (repo.stat.isdir is defined and p.stat.isdir)
 
 - name: Create app source directory
   sudo: yes
