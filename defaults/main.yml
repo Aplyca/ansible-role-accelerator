@@ -26,7 +26,7 @@ nginx:
       server_name: "localhost"
       gzip: "on"
       resolver: "127.0.0.1"
-      "set $backend_upstream": "http://www.ccb.org.co:80"
+      "set $backend_upstream": "http://www.wikipedia.org:80"
       include: "/usr/local/accelerator/nginx/proxy/*.conf"
 
 accelerator:
