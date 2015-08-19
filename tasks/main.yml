@@ -9,14 +9,25 @@
   file:
     path: "{{ accelerator['install_dir'] }}/{{ accelerator['name'] }}"
     state: absent
-  when: accelerator['repo'] is defined and not (repo.stat.isdir is defined and p.stat.isdir)
+  when: accelerator['repo'] != None and not (repo.stat.isdir is defined and p.stat.isdir)
+
+- name: Disable Nginx default server
+  sudo: yes
+  command: "mv default.conf default.conf.off"
+  args:
+    chdir: "{{ nginx['server_root'] }}/conf.d"
+    creates: "default.conf.off"
+  notify: reload nginx
+  when: accelerator["use_nginx"]
 
 - name: Create app source directory
   sudo: yes
   file:
     path: "{{ accelerator['install_dir'] }}/{{ accelerator['name'] }}"
     state: directory
-    mode: 0777
+    owner: "{{ ansible_user_id }}"
+    mode: 0775
+  when: accelerator['repo'] != None
 
 - name: "Add/Update app repo, using {{ app['version'] }}"
   git:
@@ -30,13 +41,4 @@
     - reload nginx
   tags:
     - release
-  when: accelerator['repo'] is defined
-
-- name: Disable Nginx default server
-  sudo: yes
-  command: "mv default.conf default.conf.off"
-  args:
-    chdir: "{{ nginx['server_root'] }}/conf.d"
-    creates: "default.conf.off"
-  notify: reload nginx
-  when: accelerator["use_nginx"]
+  when: accelerator['repo'] != None

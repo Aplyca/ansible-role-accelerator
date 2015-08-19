@@ -2,6 +2,7 @@
 essentials:
   packages:
     - lynx
+    - ntp
     - bash
     - curl
     - git
@@ -33,3 +34,4 @@ nginx:
 accelerator:
   name: accelerator
   use_nginx: true
+  repo: ~
