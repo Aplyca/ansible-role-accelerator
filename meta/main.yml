@@ -1,5 +1,5 @@
 ---
 dependencies:
-  - { role: aplyca.Essentials, tags: ["essentials"] }
-  - { role: aplyca.Nginx, tags: ["nginx"], when:  accelerator.use_nginx   }
-  - { role: aplyca.Varnish, tags: ["varnish"] }
+  - { role: Aplyca.Essentials, tags: ["essentials"] }
+  - { role: Aplyca.Nginx, tags: ["nginx"], when:  accelerator.use_nginx   }
+  - { role: Aplyca.Varnish, tags: ["varnish"] }

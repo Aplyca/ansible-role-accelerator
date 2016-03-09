@@ -1,39 +1,39 @@
 ---
 - name: Verify Accelerator repo is present
   stat:
-    path: "{{ accelerator['install_dir'] }}/{{ accelerator['name'] }}/.git"
+    path: "{{ accelerator.install_dir }}/{{ accelerator.name }}/.git"
   register: repo
 
 - name: Make sure the app source directory will be empty
-  sudo: yes
+  become: yes
   file:
-    path: "{{ accelerator['install_dir'] }}/{{ accelerator['name'] }}"
+    path: "{{ accelerator.install_dir }}/{{ accelerator.name }}"
     state: absent
-  when: accelerator['repo'] != None and not (repo.stat.isdir is defined and p.stat.isdir)
+  when: accelerator.repo != None and not (repo.stat.isdir is defined and p.stat.isdir)
 
 - name: Disable Nginx default server
-  sudo: yes
+  become: yes
   command: "mv default.conf default.conf.off"
   args:
-    chdir: "{{ nginx['server_root'] }}/conf.d"
+    chdir: "{{ nginx.server_root }}/conf.d"
     creates: "default.conf.off"
   notify: reload nginx
-  when: accelerator["use_nginx"]
+  when: accelerator.use_nginx
 
 - name: Create app source directory
-  sudo: yes
+  become: yes
   file:
-    path: "{{ accelerator['install_dir'] }}/{{ accelerator['name'] }}"
+    path: "{{ accelerator.install_dir }}/{{ accelerator.name }}"
     state: directory
     owner: "{{ ansible_user_id }}"
     mode: 0775
-  when: accelerator['repo'] != None
+  when: accelerator.repo != None
 
-- name: "Add/Update app repo, using {{ app['version'] }}"
+- name: "Add/Update app repo, using"
   git:
-    repo: "{{ accelerator['repo']['url'] }}"
-    dest: "{{ accelerator['install_dir'] }}/{{ accelerator['name'] }}"
-    version: "{{ accelerator['repo']['version'] | default('master') }}"
+    repo: "{{ accelerator.repo.url }}"
+    dest: "{{ accelerator.install_dir }}/{{ accelerator.name }}"
+    version: "{{ accelerator.repo.version | default('master') }}"
     update: yes
     accept_hostkey: true
   notify:
@@ -41,4 +41,4 @@
     - reload nginx
   tags:
     - release
-  when: accelerator['repo'] != None
+  when: accelerator.repo != None
