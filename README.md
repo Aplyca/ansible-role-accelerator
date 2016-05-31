@@ -29,23 +29,30 @@ See default variables: https://github.com/Aplyca/ansible-role-accelerator/blob/m
 
 ## Dependencies
 
-None.
+Aplyca.Nginx
+Aplyca.Varnish
 
-## Testing
-
-Use Vagrant to test the role:
+Testing
+-------
+Using Vagrant:
 
 ```bash
-cd tests;
-vagrant box add ubuntu/trusty64;
-vagrant up;
+tests/vagrant.sh
 ```
-You should see the Varnish cache running on http://localhost:6081
+Using Docker:
 
-## License
+```bash
+tests/docker.sh
+```
+
+You should see an Apache server on http://localhost:8080
+
+License
+-------
 
 MIT / BSD
 
-## Author Information
+Author Information
+------------------
 
 Mauricio Sánchez from Aplyca SAS (http://www.aplyca.com)
