@@ -3,6 +3,9 @@
 
 cd $(dirname "$0") && cd ..
 
+echo "Install dependencies"
+ansible-galaxy install -r dependencies.yml
+
 echo "Checking syntax"
 ansible-playbook -i inventories/local playbooks.yml --extra-vars="@tests/tests.yml" --connection=local --syntax-check
 

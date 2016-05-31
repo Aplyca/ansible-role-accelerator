@@ -2,6 +2,7 @@
 
 [![Build Status](https://travis-ci.org/Aplyca/ansible-role-accelerator.svg?branch=master)](https://travis-ci.org/Aplyca/ansible-role-accelerator)
 [![Circle CI](https://circleci.com/gh/Aplyca/ansible-role-accelerator.svg?style=svg)](https://circleci.com/gh/Aplyca/ansible-role-accelerator)
+[![Build Status](https://drone.io/github.com/Aplyca/ansible-role-accelerator/status.png)](https://drone.io/github.com/Aplyca/ansible-role-accelerator/latest)
 Ansible Role that installs and configure a web accelerator based on Varnish on Debian/Ubuntu.
 
 ## Requirements

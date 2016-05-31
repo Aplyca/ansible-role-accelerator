@@ -1,3 +1,2 @@
-- src: aplyca.Varnish
-- src: aplyca.Nginx
-- src: aplyca.Essentials
+- src: Aplyca.Varnish
+- src: Aplyca.Nginx
