@@ -1,13 +1,4 @@
 ---
-essentials:
-  packages:
-    - lynx
-    - ntp
-    - bash
-    - curl
-    - git
-    - dnsmasq
-
 varnish:
   default_dir: /usr/local/accelerator/varnish
   vcl_dir: /usr/local/accelerator/varnish
@@ -24,12 +15,15 @@ nginx:
     types_hash_max_size: 2048
     client_max_body_size: 0
   servers:
-    - listen: "8080 default_server"
-      server_name: "localhost"
-      gzip: "on"
-      resolver: "127.0.0.1"
-      "set $backend_upstream": "http://www.wikipedia.org:80"
-      include: "/usr/local/accelerator/nginx/proxy/*.conf"
+    - name: default
+      listen:
+        - "8080 default_server"
+      directives:
+        server_name: "localhost"
+        gzip: "on"
+        resolver: "127.0.0.1"
+        "set $backend_upstream": "http://www.wikipedia.org:80"
+        include: "/usr/local/accelerator/nginx/proxy/*.conf"
 
 accelerator:
   name: accelerator

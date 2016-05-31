@@ -1,0 +1,5 @@
+---
+- name: Provision Accelerator with Varnish+Nginx
+  hosts: all
+  roles:
+    - { role: Aplyca.Accelerator, tags: ["accelerator"] }
