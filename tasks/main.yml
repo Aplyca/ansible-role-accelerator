@@ -15,9 +15,10 @@
     version: "{{ accelerator.repo.version | default('master') }}"
     update: yes
     accept_hostkey: true
+    force: yes
   notify:
     - reload varnish
     - reload nginx
   tags:
     - release
-  when: accelerator.repo
+  when: accelerator.repo.url is defined

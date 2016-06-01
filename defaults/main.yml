@@ -28,4 +28,5 @@ nginx:
 accelerator:
   name: accelerator
   use_nginx: true
-  repo: ~
+  repo:
+      url: ~
