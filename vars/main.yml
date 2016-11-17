@@ -5,4 +5,5 @@ accelerator:
 varnish:
   default_dir: /usr/local/accelerator/varnish
   vcl_dir: /usr/local/accelerator/varnish
+  install_vcl: False  
   port: 80
