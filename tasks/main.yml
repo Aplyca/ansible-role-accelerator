@@ -1,4 +1,7 @@
 ---
+- debug: var=accelerator verbosity=1
+  tags: vars
+
 - name: Create app source directory
   become: yes
   file:

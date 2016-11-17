@@ -1,9 +1,4 @@
 ---
-varnish:
-  default_dir: /usr/local/accelerator/varnish
-  vcl_dir: /usr/local/accelerator/varnish
-  port: 80
-
 nginx:
   worker_processes: 4
   worker_connections: 19000
