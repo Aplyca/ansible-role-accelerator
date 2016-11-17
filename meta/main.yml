@@ -1,14 +1,7 @@
 ---
 dependencies:
   - { role: Aplyca.Nginx, tags: ["nginx"], when:  accelerator.use_nginx   }
-  - { role: Aplyca.Varnish,
-      tags: ["varnish"],
-      varnish: {
-        default_dir: /usr/local/accelerator/varnish,
-        vcl_dir: /usr/local/accelerator/varnish,
-        port: 80,
-      }
-    }
+  - { role: Aplyca.Varnish, tags: ["varnish"] }
 
 galaxy_info:
   author: aplyca
