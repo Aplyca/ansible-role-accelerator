@@ -7,7 +7,7 @@
   file:
     path: "{{ accelerator.install_dir }}/{{ accelerator.name }}"
     state: directory
-    owner: "{{ ansible_user_id }}"
+    owner: "{{ accelerator.owner | default(ansible_user_id) }}"
     mode: 0775
   when: accelerator.repo
 
@@ -25,3 +25,5 @@
   tags:
     - release
   when: accelerator.repo.url is defined
+  become: true
+  become_user: "{{ accelerator.owner | default(ansible_user_id) }}"  
