@@ -1,6 +1,6 @@
 ---
 dependencies:
-  - { role: Aplyca.Nginx, tags: ["nginx"], when:  accelerator.use_nginx   }
+  - { role: Aplyca.Nginx, tags: ["nginx"], when:  accelerator.use_nginx }
   - { role: Aplyca.Varnish, tags: ["varnish"] }
 
 galaxy_info:
@@ -16,5 +16,5 @@ galaxy_info:
   - name: Ubuntu
     versions:
     - all
-  categories:
+  galaxy_tags:
     - web
