@@ -26,4 +26,4 @@
     - release
   when: accelerator.repo.url is defined
   become: true
-  become_user: "{{ accelerator.owner | default(ansible_user_id) }}"  
+  become_user: "{{ accelerator.owner | default(ansible_user_id) }}"
